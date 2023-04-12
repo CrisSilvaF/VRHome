@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script type="module" src="js/components.js"></script>
+    <script type="module" src="js/events.js"></script>
+    <title>Virtual Home</title>
+</head>
+
+<body style="margin: 0px; padding: 0px;">
+    <a-scene renderer="antialias: true; colorManagement: true; sortObjects: true; physicallyCorrectLights: true;"
+        event-system>
+
+        <a-entity id="player" position="0 0 0">
+            <a-entity camera orbit-control position="0 0 0"></a-entity>
+            <!-- Hand TRacking Controls -->
+            <a-entity id="leftHand" hand-tracking-controls="hand: left; modelStyle: dots; modelColor: #1f3f5f"
+                hand-teleport>
+
+            </a-entity>
+            <a-entity id="rightHand"
+                hand-tracking-controls="hand: right; modelStyle: dots; modelColor: #5f1f3f"></a-entity>
+            <!-- VR Controls -->
+            <a-entity id="leftHandC" hand-custom="hand: left; handModelStyle: lowPoly;"></a-entity>
+            <a-entity id="rightHandC" hand-custom="hand: right; handModelStyle: lowPoly;"></a-entity>
+
+            <a-entity oculus-touch-controls="hand: left"></a-entity>
+            <a-entity oculus-touch-controls="hand: right"></a-entity>
+            <a-entity id="teleportLine"
+                raycaster="objects: .clickable; showLine: false; far: 100; lineColor: #ffff00; lineOpacity: 1"></a-entity>
+        </a-entity>
+
+        <a-dodecahedron id="teleportPoint" position="0 0 -1" radius="0.1" color="#00ffff"></a-dodecahedron>
+        <a-plane id="sceneFloor" class="clickable" position="0 0 -1" rotation="-90 0 0" scale="9 6 1"
+            color="#5f5f5f"></a-plane>
+
+        <a-entity gltf-model="glbs/Alysa.glb" position="0 0 -15" scale="1 1 1"></a-entity>
+        <a-entity class="clickable" gltf-model="glbs/floor.glb" position="0 0 -15" scale="1 1 1"></a-entity>
+    </a-scene>
+
+</body>
+
+</html>
